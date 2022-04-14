@@ -1,4 +1,4 @@
-# ardigen-test
+# github-searcher
 
 ## Project setup
 ```
