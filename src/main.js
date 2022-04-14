@@ -6,6 +6,8 @@ import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import "primeflex/primeflex.css";
+
 const app = createApp(App);
 app.use(PrimeVue).use(VueAxios, axios);
 app.config.globalProperties.api = "https://api.github.com/";

@@ -1,6 +1,6 @@
 <template>
   <div v-if="users != 'null'">
-    <h1>Click on row to select user repositories</h1>
+    <h1>Click on the row to show user's repositories</h1>
     <DataTable class="table" :value="users" :rows="5" :paginator="true"
       paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
       :rowsPerPageOptions="[10,20,50]"
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     rowClick(e) {
-      this.$emit('rowClick', e);
+      this.$emit('rowClick', e, 'user-repos');
     }
   }
 }

@@ -1,11 +1,13 @@
 <template>
   <div>
+    <h1>Click on repository for details</h1>
     <DataTable class="table" :value="repos" :rows="5" :paginator="true"
       paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
       :rowsPerPageOptions="[10,20,50]"
       responsiveLayout="scroll"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
-      :rowHover="true">
+      :rowHover="true"
+      @row-click="rowClick($event)">
       <Column field="name" header="Name"></Column>
       <Column field="description" header="Description"></Column>
       <Column field="language" header="Language"></Column>
@@ -35,6 +37,11 @@ export default {
     return {
       repos: 'null',
     };
+  },
+  methods: {
+    rowClick(e) {
+      this.$emit('rowClick', e, 'repository-detail');
+    }
   },
   mounted() {
     const api = this.api + "users/" + this.login + "/repos";
