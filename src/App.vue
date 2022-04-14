@@ -1,20 +1,25 @@
 <template>
-<div>
-<InputText type="text" v-model="value" />
-</div>
+<user-searcher>
+
+</user-searcher>
 </template>
 
 <script>
-import InputText from 'primevue/inputtext';
+import UserSearcher from './components/UserSearcher.vue';
 export default {
   name: 'App',
   components: {
-    InputText
-  }
-
+    UserSearcher,
+  },
 }
 </script>
 
 <style>
-
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 </style>
