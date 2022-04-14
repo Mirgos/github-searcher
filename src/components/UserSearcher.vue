@@ -1,23 +1,27 @@
 <template>
 <div class="main-container">
   <InputText class="search-bar" placeholder="Type user name and press enter" type="text" v-model="login" v-on:keyup.enter="searchUsers" />
-  <the-table :users="users"></the-table>
+  <component :is="currentComponent" :users="users" @rowClick="rowClick" :login="selectedLogin"></component>
 </div>  
 </template>
 
 <script>
 import InputText from 'primevue/inputtext';
-import TheTable from './TheTable.vue';
+import UsersTable from './UsersTable.vue';
+import UserRepos from './UserRepos.vue';
 export default {
   data() {
     return {
       login: "",
+      selectedLogin: "",
       users: 'null',
+      currentComponent: 'users-table',
     };
   },
   components: {
     InputText,
-    TheTable,
+    UsersTable,
+    UserRepos
   },
   methods: {
     searchUsers() {
@@ -27,9 +31,12 @@ export default {
       }).then((data) => {
         this.users = data.items;
       });
+      this.currentComponent = 'users-table';
     },
     rowClick(e) {
+      this.selectedLogin = e.data.login;
       console.log(e.data.login);
+      this.currentComponent = 'user-repos';
     }
   },
 }
@@ -41,6 +48,7 @@ export default {
   display: block;
   width: 400px;
 }
+
 
 .main-container {
   width: 800px;
