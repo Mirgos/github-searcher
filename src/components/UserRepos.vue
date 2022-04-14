@@ -19,6 +19,7 @@
           <Button type="button" icon="pi pi-cloud" class="p-button-text" />
       </template>
     </DataTable>
+    <Button label="Go back" class="p-button-outlined" @click="goBack"/>
   </div>
 </template>
 
@@ -28,6 +29,7 @@ import Column from 'primevue/column';
 import Button from 'primevue/button';
 export default {
   props: ['login'],
+  emits: ['changeRepoUrl'],
   components: {
     DataTable,
     Column,
@@ -40,9 +42,12 @@ export default {
   },
   methods: {
     rowClick(e) {
-      this.$emit('rowClick', e);
+      this.$emit('changeRepoUrl', e);
       this.$emit('changeComponent', 'repository-detail');
     },
+    goBack() {
+      this.$emit('changeComponent', 'users-table');
+    }
   },
   mounted() {
     const api = this.api + "users/" + this.login + "/repos";
@@ -56,4 +61,7 @@ export default {
 </script>
 
 <style scoped>
+.p-button-outlined {
+  margin-top: 20px;
+}
 </style>

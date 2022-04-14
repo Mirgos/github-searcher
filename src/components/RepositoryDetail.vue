@@ -28,11 +28,13 @@
               <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{ repository.open_issues }}</div>
           </li>
       </ul>
+    <Button label="Go back" class="p-button-outlined" @click="goBack"/>
   </div>
 </template>
 
 <script>
 import Chip from 'primevue/chip';
+import Button from 'primevue/button';
 export default {
   props: ['repoUrl'],
   data() {
@@ -43,6 +45,12 @@ export default {
   },
   components: {
     Chip,
+    Button,
+  },
+  methods: {
+    goBack() {
+      this.$emit('changeComponent', 'user-repos');
+    }
   },
   mounted() {
     const api = this.repoUrl;
@@ -70,5 +78,9 @@ export default {
 
 .mr-2 {
   margin: 2px;
+}
+
+.p-button-outlined {
+  margin-top: 20px;
 }
 </style>

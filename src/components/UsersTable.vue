@@ -31,7 +31,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
 export default {
-  emits: ['rowClick'],
+  emits: ['changeLogin'],
   props: ['users'],
   components: {
     DataTable,
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     rowClick(e) {
-      this.$emit('rowClick', e);
+      this.$emit('changeLogin', e);
       this.$emit('changeComponent', 'user-repos');
     }
   }
