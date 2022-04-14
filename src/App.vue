@@ -1,6 +1,5 @@
 <template>
 <user-searcher>
-
 </user-searcher>
 </template>
 

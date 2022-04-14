@@ -1,7 +1,9 @@
 <template>
 <div class="main-container">
   <InputText class="search-bar" placeholder="Type user name and press enter" type="text" v-model="login" v-on:keyup.enter="searchUsers" />
-  <component :is="currentComponent" :users="users" @rowClick="rowClick" :login="selectedLogin" :repoUrl="repoUrl"></component>
+  <component :is="currentComponent" :users="users" 
+    @rowClick="rowClick" @changeComponent="changeComponent" :login="selectedLogin" :repoUrl="repoUrl">
+  </component>
 </div>  
 </template>
 
@@ -36,9 +38,11 @@ export default {
       });
       this.currentComponent = 'users-table';
     },
-    rowClick(e,component) {
+    rowClick(e) {
       this.selectedLogin = e.data.login;
       this.repoUrl = e.data.url;
+    },
+    changeComponent(component) {
       this.currentComponent = component;
     }
   },

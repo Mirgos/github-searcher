@@ -40,8 +40,9 @@ export default {
   },
   methods: {
     rowClick(e) {
-      this.$emit('rowClick', e, 'repository-detail');
-    }
+      this.$emit('rowClick', e);
+      this.$emit('changeComponent', 'repository-detail');
+    },
   },
   mounted() {
     const api = this.api + "users/" + this.login + "/repos";
@@ -55,5 +56,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

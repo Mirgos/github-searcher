@@ -40,7 +40,8 @@ export default {
   },
   methods: {
     rowClick(e) {
-      this.$emit('rowClick', e, 'user-repos');
+      this.$emit('rowClick', e);
+      this.$emit('changeComponent', 'user-repos');
     }
   }
 }

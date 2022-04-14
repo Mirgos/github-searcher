@@ -10,10 +10,22 @@
           <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
               <div class="text-500 w-6 md:w-2 font-medium">Languages</div>
               <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
-                  <Chip label="Python" class="mr-2"></Chip>
-                  <Chip label="Javascript" class="mr-2"></Chip>
-                  <Chip label="Html"></Chip>
+                  <Chip v-for="language in languages" :key="language" :label="language" class="mr-2"></Chip>
               </div>
+          </li>
+          <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+              <div class="text-500 w-6 md:w-2 font-medium">Topics</div>
+              <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">
+                  <Chip v-for="topic in repository.topics" :key="topic" :label="topic" class="mr-2"></Chip>
+              </div>
+          </li>
+          <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+              <div class="text-500 w-6 md:w-2 font-medium">Stargazers</div>
+              <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{ repository.stargazers_count }}</div>
+          </li>
+          <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+              <div class="text-500 w-6 md:w-2 font-medium">Open Issues</div>
+              <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{ repository.open_issues }}</div>
           </li>
       </ul>
   </div>
@@ -30,7 +42,7 @@ export default {
     }
   },
   components: {
-    Chip
+    Chip,
   },
   mounted() {
     const api = this.repoUrl;
@@ -38,6 +50,14 @@ export default {
       return response.data;
     }).then((data) => {
       this.repository = data;
+
+      const languages_url = data.languages_url;
+      this.axios.get(languages_url).then(function(response) {
+        return response.data;
+      }).then((data) => {
+        this.languages = Object.keys(data);
+      });
+
     });
   }
 }
@@ -45,6 +65,10 @@ export default {
 
 <style scoped>
 .surface-section {
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+.mr-2 {
+  margin: 2px;
 }
 </style>
